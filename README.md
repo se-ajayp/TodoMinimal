@@ -14,8 +14,8 @@
 
 ## Screenshots
 
-![Screen 1](Extra\Screenshot_1704561337.png)
-![screen 2](Extra\Screenshot_1704561343.png)
+![Screen 1](Extra/Screenshot_1704561337.png)
+![screen 2](Extra/Screenshot_1704561343.png)
 
 ## Author
 
