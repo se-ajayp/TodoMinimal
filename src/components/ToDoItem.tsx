@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
-import {ToDoItem} from '../models';
+import {ToDoItem} from '../models/ToDoModel';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import {TouchableOpacity} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   todoTextContainer: {},
   sectionTitle: {fontSize: 16, color: '#000'},
   checkbox: {
+    color: '#2D4354',
     // alignSelf: 'center',
   },
 });
