@@ -21,7 +21,7 @@ jobs:
       - name: Install_Java
         uses: action/setup-java@v2
         with:
-          Java-version: '17.0.6'
+          Java-version: '17'
           distribution: 'adopt'
           cache: 'gradle'
 
