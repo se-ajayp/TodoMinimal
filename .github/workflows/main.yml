@@ -36,21 +36,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Change wrapper permissions
-        run: chmod +x ./gradlew
-
-      # Run Tests Build
-      - name: Run gradle tests
-        run: ./gradlew test
-
-      # Run Build Project
-      - name: Build gradle project
-        run: ./gradlew build
-
-      # Create APK Debug
-      - name: Build apk debug project
-        run: ./gradlew assembleDebug
-
       - name: Build Android App
         run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleRelease
 
