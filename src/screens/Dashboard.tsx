@@ -20,7 +20,10 @@ import {Image} from 'react-native';
 import ColorConstant from '../constants/ColorConstant';
 import {StatusBar} from 'react-native';
 import PieChart from 'react-native-pie-chart';
-const DateFormat = 'DD-MM-YYYY';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import fonts from '../constants/fonts';
+import Toast from 'react-native-toast-message';
+const DateFormat = 'D/M/YYYY';
 
 const DateFilter = (todos, selectedDate) => {
   todos = todos.filter(item => item.date === selectedDate.format(DateFormat));
@@ -47,24 +50,43 @@ const Dashboard = () => {
     <View
       style={[
         styles.itemStyle,
-        {backgroundColor: done ? '#424769' : ColorConstant.itemBackground},
+        {
+          backgroundColor: done
+            ? ColorConstant.taskDone
+            : ColorConstant.taskUndone,
+        },
       ]}>
       <CheckBox
         style={{padding: 10}}
-        onValueChange={() => dispatch(toggleTodo(id))}
+        onValueChange={() => {
+          dispatch(toggleTodo(id));
+          Toast.show({
+            type: 'success',
+            text1: 'Task Completed',
+            text2: 'The task has been completed 👋',
+          });
+        }}
         value={done}
       />
       <View style={{marginLeft: 10}}>
-        <Text style={{fontSize: 16, color: '#FFF'}}>{title}</Text>
-        {/* <Text style={{fontSize: 10, color: '#FFF'}}>{date.toString()}</Text> */}
+        <Text style={{fontSize: 16, color: '#FFF', fontFamily: fonts.MPL_Bold}}>
+          {title}
+        </Text>
+        {/* <Text style={{fontSize: 10, color: '#FFF',fontFamily: fonts.MPL_Bold,}}>{date.toString()}</Text> */}
       </View>
 
       <TouchableOpacity
         style={{position: 'absolute', right: 16}}
         onPress={() => {
           dispatch(deleteTodo(id));
+          Toast.show({
+            type: 'success',
+            text1: 'Task Deleted',
+            text2: 'The task has been deleted 👋',
+          });
         }}>
-        <Text style={{fontSize: 16, color: 'red'}}>Delete</Text>
+        {/* <Text style={{fontSize: 16, color: 'red',fontFamily: fonts.MPL_Bold,}}>Delete</Text> */}
+        <FontAwesome6 name="trash" size={16} color={ColorConstant.deleteIcon} />
       </TouchableOpacity>
     </View>
   );
@@ -78,6 +100,11 @@ const Dashboard = () => {
         }),
       );
       setNewTodo('');
+      Toast.show({
+        type: 'success',
+        text1: 'Task Added',
+        text2: 'New task has been added 👋',
+      });
     }
   };
 
@@ -93,18 +120,22 @@ const Dashboard = () => {
 
   const widthAndHeight = 100;
   const series = [completedCount, pendingCount];
-  const sliceColor = ['#424769', ColorConstant.itemBackground];
+  const sliceColor = [ColorConstant.taskDone, ColorConstant.taskUndone];
 
   return (
     <View style={styles.container}>
-      <StatusBar translucent backgroundColor="transparent" />
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="dark-content"
+      />
       <View style={{flexDirection: 'row'}}>
         <View style={{flex: 1}}>
           <Text style={styles.titleStyle}>
             {moment().format(DateFormat) === selectedDate.format(DateFormat)
-              ? `Today's`
+              ? `Today`
               : tomorrow === selectedDate.format(DateFormat)
-              ? `Tomorrow's`
+              ? `Tomorrow`
               : selectedDate.format(DateFormat)}
           </Text>
           <Text style={styles.titleStyle}>Schedule</Text>
@@ -122,35 +153,46 @@ const Dashboard = () => {
       <View>
         <CalendarStrip
           scrollable
-          calendarAnimation={{type: 'sequence', duration: 30}}
+          calendarAnimation={{type: 'sequence', duration: 100}}
           daySelectionAnimation={{
             type: 'background',
-            duration: 300,
-            highlightColor: '#9265DC',
+            duration: 50,
+            highlightColor: 'black',
           }}
           minDate={moment()}
           style={{height: 100, marginTop: 16}}
           calendarHeaderStyle={{
-            color: 'white',
-            fontSize: 16,
+            color: ColorConstant.titleTextColor,
+            fontSize: 18,
+            fontFamily: fonts.MPL_Bold,
           }}
-          dateNumberStyle={{color: 'white', fontSize: 12}}
-          dateNameStyle={{color: 'white', fontSize: 12}}
+          dateNumberStyle={{
+            color: ColorConstant.titleTextColor,
+            fontSize: 12,
+            fontFamily: fonts.MPL_Medium,
+          }}
+          dateNameStyle={{
+            color: ColorConstant.titleTextColor,
+            fontSize: 12,
+            fontFamily: fonts.MPL_Regular,
+          }}
           iconContainer={{flex: 0.1}}
           // customDatesStyles={this.state.customDatesStyles}
           highlightDateNameStyle={{
-            color: ColorConstant.textColor,
+            color: 'white',
             fontSize: 12,
+            fontFamily: fonts.MPL_Bold,
           }}
           highlightDateNumberStyle={{
-            color: ColorConstant.textColor,
+            color: 'white',
             fontSize: 12,
+            fontFamily: fonts.MPL_Bold,
           }}
           highlightDateContainerStyle={{
-            backgroundColor: '#424769',
+            backgroundColor: ColorConstant.titleTextColor,
             borderColor: ColorConstant.itemBackground,
-            borderWidth: 2,
-            elevation: 4,
+            borderWidth: 1,
+            elevation: 2,
           }}
           // markedDates={this.state.markedDates}
           // datesBlacklist={this.datesBlacklistFunc}
@@ -173,28 +215,29 @@ const Dashboard = () => {
             date={item.date}
           />
         )}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={item => item.id.toString() + item.title.toString()}
         ListEmptyComponent={
           <View
             style={{
               justifyContent: 'center',
               alignItems: 'center',
               marginTop: 50,
+              elevation: 2,
             }}>
             <Image
               style={{
-                height: 250,
-                width: 250,
+                height: 200,
+                width: 200,
                 borderRadius: 20,
                 resizeMode: 'cover',
               }}
-              source={require('../assets/images/empty_list.jpg')}
+              source={require('../../assets/images/empty_list.jpg')}
             />
           </View>
         }
       />
       {/* Add Todo */}
-      <View style={{}}>
+      <View style={{justifyContent: 'center'}}>
         <TextInput
           value={newTodo}
           placeholder="Enter Task"
@@ -202,7 +245,19 @@ const Dashboard = () => {
           onChangeText={text => setNewTodo(text)}
           onEndEditing={handleAddTodo}
         />
+        <TouchableOpacity
+          style={{position: 'absolute', right: 15, zIndex: 1}}
+          onPress={() => {
+            handleAddTodo();
+          }}>
+          <FontAwesome6
+            name="plus"
+            size={16}
+            color={ColorConstant.titleTextColor}
+          />
+        </TouchableOpacity>
       </View>
+      <Toast />
     </View>
   );
 };
@@ -217,16 +272,24 @@ const styles = StyleSheet.create({
     backgroundColor: ColorConstant.background,
   },
   titleStyle: {
-    color: ColorConstant.textColor,
+    color: ColorConstant.titleTextColor,
     fontSize: 30,
-    fontWeight: 'bold',
+    fontFamily: fonts.MPL_Bold,
   },
-  addTodo: {backgroundColor: '#fff', borderRadius: 8, paddingLeft: 16},
+  addTodo: {
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    paddingLeft: 16,
+    color: ColorConstant.titleTextColor,
+    elevation: 2,
+    fontSize: 16,
+    fontFamily: fonts.MPL_Regular,
+  },
   itemStyle: {
     backgroundColor: ColorConstant.itemBackground,
     marginVertical: 10,
-    elevation: 8,
-    borderRadius: 8,
+    elevation: 2,
+    borderRadius: 15,
     padding: 10,
     flexDirection: 'row',
     alignItems: 'center',

@@ -14,6 +14,13 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-ToDoMinimal-ToDoMinimalTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ToDoMinimal-ToDoMinimalTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		780D98AD39FC4EAAB06BEC6C /* MPL-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6980878F4E048858E9FD3BE /* MPL-Black.ttf */; };
+		C51CBCA0AF2A43818036C227 /* MPL-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A36C813B340F44D9B9215AFA /* MPL-Bold.ttf */; };
+		3CC933A0A4284BB48DB56910 /* MPL-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43313A9F4C6B4B1D80F7E49D /* MPL-ExtraBold.ttf */; };
+		A37C11EB60AE4E08AF54373B /* MPL-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FE9A9080417436DA2C24020 /* MPL-Light.ttf */; };
+		6004B4C575FD4E648142D951 /* MPL-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F952E04A96C846509F2873DE /* MPL-Medium.ttf */; };
+		FAFDBCC19BD441F7B0699BAF /* MPL-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 600A9331714A424BA558FA5C /* MPL-Regular.ttf */; };
+		1F306AC75B8C4A0C9CFD5A8F /* MPL-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B532732E4DC84A3197EFF1CC /* MPL-Thin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +51,13 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ToDoMinimal/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-ToDoMinimal-ToDoMinimalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoMinimal-ToDoMinimalTests.release.xcconfig"; path = "Target Support Files/Pods-ToDoMinimal-ToDoMinimalTests/Pods-ToDoMinimal-ToDoMinimalTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		D6980878F4E048858E9FD3BE /* MPL-Black.ttf */ = {isa = PBXFileReference; name = "MPL-Black.ttf"; path = "../assets/fonts/MPL-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A36C813B340F44D9B9215AFA /* MPL-Bold.ttf */ = {isa = PBXFileReference; name = "MPL-Bold.ttf"; path = "../assets/fonts/MPL-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		43313A9F4C6B4B1D80F7E49D /* MPL-ExtraBold.ttf */ = {isa = PBXFileReference; name = "MPL-ExtraBold.ttf"; path = "../assets/fonts/MPL-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8FE9A9080417436DA2C24020 /* MPL-Light.ttf */ = {isa = PBXFileReference; name = "MPL-Light.ttf"; path = "../assets/fonts/MPL-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F952E04A96C846509F2873DE /* MPL-Medium.ttf */ = {isa = PBXFileReference; name = "MPL-Medium.ttf"; path = "../assets/fonts/MPL-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		600A9331714A424BA558FA5C /* MPL-Regular.ttf */ = {isa = PBXFileReference; name = "MPL-Regular.ttf"; path = "../assets/fonts/MPL-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B532732E4DC84A3197EFF1CC /* MPL-Thin.ttf */ = {isa = PBXFileReference; name = "MPL-Thin.ttf"; path = "../assets/fonts/MPL-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +136,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				43280BFC81714F7E8DE49B20 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +162,21 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		43280BFC81714F7E8DE49B20 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				D6980878F4E048858E9FD3BE /* MPL-Black.ttf */,
+				A36C813B340F44D9B9215AFA /* MPL-Bold.ttf */,
+				43313A9F4C6B4B1D80F7E49D /* MPL-ExtraBold.ttf */,
+				8FE9A9080417436DA2C24020 /* MPL-Light.ttf */,
+				F952E04A96C846509F2873DE /* MPL-Medium.ttf */,
+				600A9331714A424BA558FA5C /* MPL-Regular.ttf */,
+				B532732E4DC84A3197EFF1CC /* MPL-Thin.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -244,6 +274,13 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				780D98AD39FC4EAAB06BEC6C /* MPL-Black.ttf in Resources */,
+				C51CBCA0AF2A43818036C227 /* MPL-Bold.ttf in Resources */,
+				3CC933A0A4284BB48DB56910 /* MPL-ExtraBold.ttf in Resources */,
+				A37C11EB60AE4E08AF54373B /* MPL-Light.ttf in Resources */,
+				6004B4C575FD4E648142D951 /* MPL-Medium.ttf in Resources */,
+				FAFDBCC19BD441F7B0699BAF /* MPL-Regular.ttf in Resources */,
+				1F306AC75B8C4A0C9CFD5A8F /* MPL-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
