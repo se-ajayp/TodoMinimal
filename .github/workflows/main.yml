@@ -1,47 +1,54 @@
-name: Build Android App
+name: Android Build
 
 on:
-  workflow_dispatch:
-    branches: dev
-    #can add push and pull_request here
+  push:
+    branches:
+      - main
+      - master
+      - dev
+  pull_request:
+    branches:
+      - dev
 
 jobs:
   build:
-    name: Build and Release new apk
-    run-on: ubuntu-latest 
+    runs-on: ubuntu-latest
+
     steps:
-      -name: Checkout repository
-       uses: action/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      -name: Install Java
-       uses: action/setup-java@v2
-       with:
-        Java-version: '17.0.6'
-        distribution: 'adopt'
-        cache: "gradle"
-      
-      -name: Validate Gradle wrapper
-       uses: gradle/wrapper-validation-action@v1
+      - name: Install_Java
+        uses: action/setup-java@v2
+        with:
+          Java-version: '17.0.6'
+          distribution: 'adopt'
+          cache: 'gradle'
 
-      -name: Setup Node
-       uses: actions/setup-node@v3
-       with:
-        node-version:'21.4.0'
-      
-      -name: Run Yarn Install
-        run: |
-             cd ./packages/app-mobile/
-             npm i -g corepack
-             yarn install 
-      
-      -name: Build application
-       run: |
-            cd ./packages/app-mobile/android
-            ./gradlew assembleDebug
-      
-      -name: Upload application
-       uses: actions/upload-artifact@v2
-       with: 
-        name: app
-        path: android\app\build\outputs\apk\debug\app-debug.apk
-        
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Android App
+        run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleRelease
+
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: android-app
+          path: android/app/build/outputs/apk/release/app-release.apk
+
+      - name: Notify Success
+        if: success()
+        run: echo "Android build completed successfully"
+
+      - name: Notify Failure
+        if: failure()
+        run: echo "Android build failed"
